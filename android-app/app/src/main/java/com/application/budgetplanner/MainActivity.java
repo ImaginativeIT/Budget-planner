@@ -44,12 +44,15 @@ public class MainActivity extends AppCompatActivity {
 
         incomeAdapter = new IncomeAdapter(MainActivity.this);
 
-        final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                1f
 
-        );
+//        inItemView = layoutInflater.inflate(R.layout.list_view_container, null);
+//        inList = inItemView.findViewById(R.id.listView);
+//        inList.setAdapter(incomeAdapter);
+//        inItemContainer.addView(inItemView);
+//        expenseContainer.removeView(inItemView);
+//        savingContainer.removeView(inItemView);
+//        exItemContainer.addView(inItemView);
+//        svItemContainer.addView(inItemView);
 
         exItemView = layoutInflater.inflate(R.layout.list_view_container, null);
         svItemView = layoutInflater.inflate(R.layout.list_view_container, null);
@@ -58,13 +61,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (inItemView == null) {
+                    incomeContainer.setLayoutParams(getLayoutParams(13));
+                    expenseContainer.setLayoutParams(getLayoutParams(1));
+                    savingContainer.setLayoutParams(getLayoutParams(1));
                     inItemView = layoutInflater.inflate(R.layout.list_view_container, null);
                     inList = inItemView.findViewById(R.id.listView);
                     inList.setAdapter(incomeAdapter);
                     inItemContainer.addView(inItemView);
                 }
                 else {
-                    incomeContainer.setLayoutParams(params);
+                    incomeContainer.setLayoutParams(getLayoutParams(5));
+                    expenseContainer.setLayoutParams(getLayoutParams(5));
+                    savingContainer.setLayoutParams(getLayoutParams(5));
                     inItemContainer.removeView(inItemView);
                     inItemView = null;
                 }
@@ -75,13 +83,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (inItemView == null) {
+                    incomeContainer.setLayoutParams(getLayoutParams(1));
+                    expenseContainer.setLayoutParams(getLayoutParams(13));
+                    savingContainer.setLayoutParams(getLayoutParams(1));
                     inItemView = layoutInflater.inflate(R.layout.list_view_container, null);
                     inList = inItemView.findViewById(R.id.listView);
                     inList.setAdapter(incomeAdapter);
                     exItemContainer.addView(inItemView);
                 }
                 else {
-                    expenseContainer.setLayoutParams(params);
+                    incomeContainer.setLayoutParams(getLayoutParams(5));
+                    expenseContainer.setLayoutParams(getLayoutParams(5));
+                    savingContainer.setLayoutParams(getLayoutParams(5));
                     exItemContainer.removeView(inItemView);
                     inItemView = null;
                 }
@@ -92,13 +105,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (inItemView == null) {
+                    incomeContainer.setLayoutParams(getLayoutParams(1));
+                    expenseContainer.setLayoutParams(getLayoutParams(1));
+                    savingContainer.setLayoutParams(getLayoutParams(13));
                     inItemView = layoutInflater.inflate(R.layout.list_view_container, null);
                     inList = inItemView.findViewById(R.id.listView);
                     inList.setAdapter(incomeAdapter);
                     svItemContainer.addView(inItemView);
                 }
                 else {
-                    savingContainer.setLayoutParams(params);
+                    incomeContainer.setLayoutParams(getLayoutParams(5));
+                    expenseContainer.setLayoutParams(getLayoutParams(5));
+                    savingContainer.setLayoutParams(getLayoutParams(5));
+                    savingContainer.setLayoutParams(getLayoutParams(1));
                     svItemContainer.removeView(inItemView);
                     inItemView = null;
                 }
@@ -140,5 +159,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private LinearLayout.LayoutParams getLayoutParams(float layout_weight){
+
+        return new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                layout_weight
+        );
     }
 }

@@ -17,14 +17,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:weightSum="3"
+        android:weightSum="15"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
             <LinearLayout
-                android:layout_weight="1"
+                android:layout_weight="5"
                 android:id="@+id/income_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                         android:layout_alignParentEnd="true"
                         android:id="@+id/income_dropDown"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:text="click add" />
 
                 </RelativeLayout>
@@ -56,7 +56,7 @@
                     android:id="@+id/income_item_container"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
 
                 </LinearLayout>
@@ -64,7 +64,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_weight="1"
+                android:layout_weight="5"
                 android:id="@+id/expense_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
                         android:layout_alignParentEnd="true"
                         android:id="@+id/expense_dropDown"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:text="click add" />
 
                 </RelativeLayout>
@@ -96,7 +96,7 @@
                     android:id="@+id/expense_item_container"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
 
                 </LinearLayout>
@@ -104,7 +104,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_weight="1"
+                android:layout_weight="5"
                 android:id="@+id/saving_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
                         android:layout_alignParentEnd="true"
                         android:id="@+id/saving_dropDown"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:text="click add" />
 
                 </RelativeLayout>
@@ -137,7 +137,7 @@
                     android:id="@+id/saving_item_container"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
 
                 </LinearLayout>

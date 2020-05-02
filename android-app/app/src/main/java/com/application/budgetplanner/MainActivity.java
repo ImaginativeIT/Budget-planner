@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     View inItemView, exItemView, svItemView;
     LayoutInflater layoutInflater;
     ListView inList, exList, svList;
-    IncomeAdapter incomeAdapter;
+    IncomeAdapter incomeAdapter, expenseAdapter, savingAdapter;
     LinearLayout.LayoutParams maxParam, mediumParam, minParam;
 
     @Override
@@ -46,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
         exDropDown = findViewById(R.id.expense_dropDown);
         svDropDown = findViewById(R.id.saving_dropDown);
 
-        incomeAdapter = new IncomeAdapter(MainActivity.this);
+        incomeAdapter = new IncomeAdapter(MainActivity.this, R.layout.single_item_income);
+        expenseAdapter = new IncomeAdapter(MainActivity.this, R.layout.single_item_expense);
+        savingAdapter = new IncomeAdapter(MainActivity.this, R.layout.single_item_saving);
 
         inItemView = layoutInflater.inflate(R.layout.list_view_container, null);
         inList = inItemView.findViewById(R.id.listView);
@@ -55,12 +57,12 @@ public class MainActivity extends AppCompatActivity {
 
         exItemView = layoutInflater.inflate(R.layout.list_view_container, null);
         exList = exItemView.findViewById(R.id.listView);
-        exList.setAdapter(incomeAdapter);
+        exList.setAdapter(expenseAdapter);
         exItemContainer.addView(exItemView);
 
         svItemView = layoutInflater.inflate(R.layout.list_view_container, null);
         svList = svItemView.findViewById(R.id.listView);
-        svList.setAdapter(incomeAdapter);
+        svList.setAdapter(savingAdapter);
         svItemContainer.addView(svItemView);
 
 

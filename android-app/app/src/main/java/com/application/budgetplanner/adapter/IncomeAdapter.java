@@ -10,11 +10,13 @@ import com.application.budgetplanner.R;
 
 public class IncomeAdapter extends BaseAdapter {
 
-    Context context;
+    private Context context;
+    private int singleItemLayout;
     String[] array = {"a","b","c","d","e","f","g"};
 
-    public IncomeAdapter(Context c){
+    public IncomeAdapter(Context c, int singleItemLayout){
         context = c;
+        this.singleItemLayout = singleItemLayout;
 
     }
 
@@ -37,7 +39,6 @@ public class IncomeAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        View row = layoutInflater.inflate(R.layout.single_item_view, viewGroup, false);
-        return row;
+        return layoutInflater.inflate(singleItemLayout, viewGroup, false);
     }
 }

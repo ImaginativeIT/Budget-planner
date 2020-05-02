@@ -5,4 +5,8 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="pureBlack">#000000</color>
+
+    <color name="saving">#ffb900</color>
+    <color name="income">#219de7</color>
+    <color name="expense">#7d237d</color>
 </resources>

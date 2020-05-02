@@ -21,6 +21,7 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10dp"
         android:orientation="vertical">
 
             <LinearLayout
@@ -30,36 +31,76 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <LinearLayout
+                    android:weightSum="8"
                     android:layout_width="match_parent"
+                    android:orientation="horizontal"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:layout_weight="4"
                         android:id="@+id/income_topic_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:textAlignment="center"
+                        android:textAlignment="viewStart"
                         android:text="Current Income"
                         android:textStyle="bold"
                         android:textColor="@color/pureBlack"/>
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/income_total_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textAlignment="center"
+                        android:text="total : "
+                        android:textStyle="bold"
+                        android:textColor="@color/pureBlack"/>
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/income_total_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textAlignment="center"
+                        android:text="50 000"
+                        android:textStyle="bold"
+                        android:textColor="@color/pureBlack"/>
+                    <Button
+                        android:layout_weight="1"
+                        android:id="@+id/income_addNew"
+                        android:layout_width="wrap_content"
+                        android:minWidth="30dp"
+                        android:maxWidth="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/add"/>
 
                     <Button
-                        android:layout_alignParentEnd="true"
+                        android:layout_weight="1"
                         android:id="@+id/income_dropDown"
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
-                        android:text="click add" />
-
-                </RelativeLayout>
-                <LinearLayout
-                    android:id="@+id/income_item_container"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
+                        android:minWidth="30dp"
+                        android:maxWidth="50dp"
+                        android:background="@drawable/drop_down"/>
 
                 </LinearLayout>
+                <ScrollView
+                    android:id="@+id/income_scroll_container"
+                    android:layout_width="match_parent"
+                    android:fillViewport="true"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:id="@+id/income_item_container"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                    </LinearLayout>
+                </ScrollView>
+
+
 
             </LinearLayout>
 
@@ -69,37 +110,78 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <RelativeLayout
+
+
+                <LinearLayout
+                    android:weightSum="8"
                     android:layout_width="match_parent"
+                    android:orientation="horizontal"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:layout_weight="4"
                         android:id="@+id/expense_topic_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:textAlignment="center"
+                        android:textAlignment="viewStart"
                         android:text="Current Expense"
                         android:textStyle="bold"
                         android:textColor="@color/pureBlack"/>
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/expense_total_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textAlignment="center"
+                        android:text="total : "
+                        android:textStyle="bold"
+                        android:textColor="@color/pureBlack"/>
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/expense_total_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textAlignment="center"
+                        android:text="50 000"
+                        android:textStyle="bold"
+                        android:textColor="@color/pureBlack"/>
+                    <Button
+                        android:layout_weight="1"
+                        android:id="@+id/expense_addNew"
+                        android:layout_width="wrap_content"
+                        android:minWidth="30dp"
+                        android:maxWidth="50dp"
+                        android:layout_height="50dp"
+                        android:text="add" />
 
                     <Button
-                        android:layout_alignParentEnd="true"
+                        android:layout_weight="1"
                         android:id="@+id/expense_dropDown"
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
-                        android:text="click add" />
-
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:id="@+id/expense_item_container"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
+                        android:minWidth="30dp"
+                        android:maxWidth="50dp"
+                        android:text="cli" />
 
                 </LinearLayout>
+
+                <ScrollView
+                    android:id="@+id/expense_scroll_container"
+                    android:layout_width="match_parent"
+                    android:fillViewport="true"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:id="@+id/expense_item_container"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                    </LinearLayout>
+                </ScrollView>
+
 
             </LinearLayout>
 
@@ -110,37 +192,77 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <LinearLayout
+                    android:weightSum="8"
                     android:layout_width="match_parent"
+                    android:orientation="horizontal"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:layout_weight="4"
                         android:id="@+id/saving_topic_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:textAlignment="center"
-                        android:text="Current Saving"
+                        android:textAlignment="viewStart"
+                        android:text="Current Income"
                         android:textStyle="bold"
                         android:textColor="@color/pureBlack"/>
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/saving_total_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textAlignment="center"
+                        android:text="total : "
+                        android:textStyle="bold"
+                        android:textColor="@color/pureBlack"/>
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/saving_total_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textAlignment="center"
+                        android:text="50 000"
+                        android:textStyle="bold"
+                        android:textColor="@color/pureBlack"/>
+                    <Button
+                        android:layout_weight="1"
+                        android:id="@+id/saving_addNew"
+                        android:layout_width="wrap_content"
+                        android:minWidth="30dp"
+                        android:maxWidth="50dp"
+                        android:layout_height="50dp"
+                        android:text="add" />
 
                     <Button
-                        android:layout_alignParentEnd="true"
+                        android:layout_weight="1"
                         android:id="@+id/saving_dropDown"
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
-                        android:text="click add" />
-
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:id="@+id/saving_item_container"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
+                        android:minWidth="30dp"
+                        android:maxWidth="50dp"
+                        android:text="cli" />
 
                 </LinearLayout>
+
+                <ScrollView
+                    android:id="@+id/saving_scroll_container"
+                    android:layout_width="match_parent"
+                    android:fillViewport="true"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:id="@+id/saving_item_container"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                    </LinearLayout>
+                </ScrollView>
+
+
 
 
             </LinearLayout>

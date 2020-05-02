@@ -2,6 +2,7 @@ package com.application.budgetplanner;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,19 +10,22 @@ import android.view.ViewParent;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.application.budgetplanner.adapter.IncomeAdapter;
 
 public class MainActivity extends AppCompatActivity {
     private Button inDropDown, exDropDown, svDropDown;
+    ScrollView inScrollContainer;
     private LinearLayout  incomeContainer,inItemContainer,expenseContainer, exItemContainer,savingContainer, svItemContainer;
     private TextView txt;
-    boolean inddClick;
+    private static boolean inClick, exClick, svClick;
     View inItemView, exItemView, svItemView;
     LayoutInflater layoutInflater;
-    ListView inList;
+    ListView inList, exList, svList;
     IncomeAdapter incomeAdapter;
+    LinearLayout.LayoutParams maxParam, mediumParam, minParam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,59 +48,76 @@ public class MainActivity extends AppCompatActivity {
 
         incomeAdapter = new IncomeAdapter(MainActivity.this);
 
-
-//        inItemView = layoutInflater.inflate(R.layout.list_view_container, null);
-//        inList = inItemView.findViewById(R.id.listView);
-//        inList.setAdapter(incomeAdapter);
-//        inItemContainer.addView(inItemView);
-//        expenseContainer.removeView(inItemView);
-//        savingContainer.removeView(inItemView);
-//        exItemContainer.addView(inItemView);
-//        svItemContainer.addView(inItemView);
+        inItemView = layoutInflater.inflate(R.layout.list_view_container, null);
+        inList = inItemView.findViewById(R.id.listView);
+        inList.setAdapter(incomeAdapter);
+        inItemContainer.addView(inItemView);
 
         exItemView = layoutInflater.inflate(R.layout.list_view_container, null);
+        exList = exItemView.findViewById(R.id.listView);
+        exList.setAdapter(incomeAdapter);
+        exItemContainer.addView(exItemView);
+
         svItemView = layoutInflater.inflate(R.layout.list_view_container, null);
-        inddClick = false;
+        svList = svItemView.findViewById(R.id.listView);
+        svList.setAdapter(incomeAdapter);
+        svItemContainer.addView(svItemView);
+
+
+        maxParam = getLayoutParams(13);
+        mediumParam = getLayoutParams(5);
+        minParam = getLayoutParams(1);
+        
+        inClick = false;
+        svClick = false;
+        exClick = false;
+
         inDropDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (inItemView == null) {
-                    incomeContainer.setLayoutParams(getLayoutParams(13));
-                    expenseContainer.setLayoutParams(getLayoutParams(1));
-                    savingContainer.setLayoutParams(getLayoutParams(1));
-                    inItemView = layoutInflater.inflate(R.layout.list_view_container, null);
-                    inList = inItemView.findViewById(R.id.listView);
-                    inList.setAdapter(incomeAdapter);
-                    inItemContainer.addView(inItemView);
+                Log.e("inClick", " " + inClick);
+                viewContainerHandler(1);
+                if (!inClick) {
+                    incomeContainer.setLayoutParams(maxParam);
+                    expenseContainer.setLayoutParams(minParam);
+                    savingContainer.setLayoutParams(minParam);
+
+
+                    inClick = true;
                 }
                 else {
-                    incomeContainer.setLayoutParams(getLayoutParams(5));
-                    expenseContainer.setLayoutParams(getLayoutParams(5));
-                    savingContainer.setLayoutParams(getLayoutParams(5));
-                    inItemContainer.removeView(inItemView);
-                    inItemView = null;
+                    incomeContainer.setLayoutParams(mediumParam);
+                    expenseContainer.setLayoutParams(mediumParam);
+                    savingContainer.setLayoutParams(mediumParam);
+                    exItemContainer.addView(exItemView);
+                    svItemContainer.addView(svItemView);
+
+                    inClick  = false;
+
                 }
             }
         });
 
+
         exDropDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (inItemView == null) {
-                    incomeContainer.setLayoutParams(getLayoutParams(1));
-                    expenseContainer.setLayoutParams(getLayoutParams(13));
-                    savingContainer.setLayoutParams(getLayoutParams(1));
-                    inItemView = layoutInflater.inflate(R.layout.list_view_container, null);
-                    inList = inItemView.findViewById(R.id.listView);
-                    inList.setAdapter(incomeAdapter);
-                    exItemContainer.addView(inItemView);
+                viewContainerHandler(2);
+                if (!exClick) {
+                    incomeContainer.setLayoutParams(minParam);
+                    expenseContainer.setLayoutParams(maxParam);
+                    savingContainer.setLayoutParams(minParam);
+
+                    exClick = true;
                 }
                 else {
-                    incomeContainer.setLayoutParams(getLayoutParams(5));
-                    expenseContainer.setLayoutParams(getLayoutParams(5));
-                    savingContainer.setLayoutParams(getLayoutParams(5));
-                    exItemContainer.removeView(inItemView);
-                    inItemView = null;
+
+                    incomeContainer.setLayoutParams(mediumParam);
+                    expenseContainer.setLayoutParams(mediumParam);
+                    savingContainer.setLayoutParams(mediumParam);
+                    inItemContainer.addView(inItemView);
+                    svItemContainer.addView(svItemView);
+                    exClick = false;
                 }
             }
         });
@@ -104,60 +125,49 @@ public class MainActivity extends AppCompatActivity {
         svDropDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (inItemView == null) {
-                    incomeContainer.setLayoutParams(getLayoutParams(1));
-                    expenseContainer.setLayoutParams(getLayoutParams(1));
-                    savingContainer.setLayoutParams(getLayoutParams(13));
-                    inItemView = layoutInflater.inflate(R.layout.list_view_container, null);
-                    inList = inItemView.findViewById(R.id.listView);
-                    inList.setAdapter(incomeAdapter);
-                    svItemContainer.addView(inItemView);
+                viewContainerHandler(3);
+                if (!svClick) {
+                    incomeContainer.setLayoutParams(minParam);
+                    expenseContainer.setLayoutParams(minParam);
+                    savingContainer.setLayoutParams(maxParam);
+
+                    svClick = true;
                 }
                 else {
-                    incomeContainer.setLayoutParams(getLayoutParams(5));
-                    expenseContainer.setLayoutParams(getLayoutParams(5));
-                    savingContainer.setLayoutParams(getLayoutParams(5));
-                    savingContainer.setLayoutParams(getLayoutParams(1));
-                    svItemContainer.removeView(inItemView);
-                    inItemView = null;
+                    incomeContainer.setLayoutParams(mediumParam);
+                    expenseContainer.setLayoutParams(mediumParam);
+                    savingContainer.setLayoutParams(mediumParam);
+                    inItemContainer.addView(inItemView);
+                    exItemContainer.addView(exItemView);
+                    svClick = false;
                 }
             }
         });
 
-//        btn = findViewById(R.id.btn);
-//        removeBtn = findViewById(R.id.remove_btn);
-//        addBtn = findViewById(R.id.addbtn);
-//        listContainer = findViewById(R.id.list_container);
-//        final View btnview = btn;
-//
-//
-//
-//        final View listcontainer = layoutInflater.inflate(R.layout.list_view_container,null);
-//
-//        removeBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                ((ViewGroup) btnview.getParent()).removeView(listcontainer);
-//            }
-//        });
-//
-//        addBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//
-////                View btnview = btn;
-////                if ( btnview.getParent() != null){
-////                    ((ViewGroup) btnview.getParent()).removeView(btnview);
-////                }
-//                ((ViewGroup) addBtn.getParent()).addView(listcontainer);
-////                listContainer.addView(btnview);
-//            }
-//        });
+    }
 
+    private void viewContainerHandler(int containerCode){
+        inItemContainer.removeView(inItemView);
+        exItemContainer.removeView(exItemView);
+        svItemContainer.removeView(svItemView);
+        switch (containerCode){
 
-
+            case 1:
+                exClick = false;
+                svClick = false;
+                inItemContainer.addView(inItemView);
+                break;
+            case 2:
+                inClick = false;
+                svClick = false;
+                exItemContainer.addView(exItemView);
+                break;
+            case 3:
+                inClick = false;
+                exClick = false;
+                svItemContainer.addView(svItemView);
+                break;
+        }
 
     }
 

@@ -19,7 +19,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
+            <ProgressBar
 
+                android:id="@+id/incomeProgressbar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="80"
+                android:layout_centerInParent="true"
+                android:progressDrawable="@drawable/circular_income"
+                android:secondaryProgress="100"
+                />
 
         </LinearLayout>
 
@@ -28,7 +40,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
+            <ProgressBar
 
+                android:id="@+id/expenseProgressbar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="70"
+                android:layout_centerInParent="true"
+                android:progressDrawable="@drawable/circular_expense"
+                android:secondaryProgress="100"
+                />
 
 
         </LinearLayout>
@@ -38,7 +62,19 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
+            <ProgressBar
 
+                android:id="@+id/savingProgressbar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="50"
+                android:layout_centerInParent="true"
+                android:progressDrawable="@drawable/circular_saving"
+                android:secondaryProgress="100"
+                />
 
         </LinearLayout>
 
@@ -156,7 +192,6 @@
                     android:background="@color/expense_light"
                     android:weightSum="8"
                     android:gravity="center"
-                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="wrap_content">
@@ -247,7 +282,6 @@
                     android:background="@color/saving_light"
                     android:weightSum="8"
                     android:gravity="center"
-                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="wrap_content">

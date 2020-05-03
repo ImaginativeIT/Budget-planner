@@ -5,8 +5,18 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="pureBlack">#000000</color>
+    <color name="gray">#bfbfbf</color>
 
     <color name="saving">#ffb900</color>
     <color name="income">#219de7</color>
     <color name="expense">#7d237d</color>
+
+<!--    <color name="saving_light">#eeba2b</color>-->
+<!--    <color name="income_light">#62b0df</color>-->
+<!--    <color name="expense_light">#a86ca7</color>-->
+
+    <color name="saving_light">#FADC8C</color>
+    <color name="income_light">#b9d2e1</color>
+    <color name="expense_light">#c994c7</color>
+    <color name="pure">#ffffff</color>
 </resources>

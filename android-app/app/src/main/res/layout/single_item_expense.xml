@@ -17,11 +17,11 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxHeight="30dp"
-            android:minHeight="20dp"
-            android:maxWidth="30dp"
-            android:minWidth="20dp"
-            android:background="#ffffff"
+            android:maxHeight="40dp"
+            android:minHeight="30dp"
+            android:maxWidth="40dp"
+            android:minWidth="30dp"
+            android:background="@drawable/image_button_controller"
             android:src="@drawable/ic_edit_black_24dp"/>
 
     </LinearLayout>

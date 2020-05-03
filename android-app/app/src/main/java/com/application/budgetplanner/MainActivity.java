@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -16,7 +17,8 @@ import android.widget.TextView;
 import com.application.budgetplanner.adapter.IncomeAdapter;
 
 public class MainActivity extends AppCompatActivity {
-    private Button inDropDown, exDropDown, svDropDown;
+
+    ImageButton inDropDown, exDropDown, svDropDown;
     ScrollView inScrollContainer;
     private LinearLayout  incomeContainer,inItemContainer,expenseContainer, exItemContainer,savingContainer, svItemContainer;
     private TextView txt;

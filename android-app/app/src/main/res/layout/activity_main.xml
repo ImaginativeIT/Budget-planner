@@ -4,23 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="5"
+    android:weightSum="3.5"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/dark_blue"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        <ImageButton
+            android:id="@+id/navigation_drawer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_menu_white_24dp"
+            android:background="@color/dark_blue"/>
+    </android.support.v7.widget.Toolbar>
+
     <LinearLayout
         android:weightSum="3"
-        android:layout_weight="4"
+        android:layout_weight="2.5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
-        <LinearLayout
+        <RelativeLayout
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-            <ProgressBar
+            <TextView
+                android:paddingTop="10dp"
+                android:id="@+id/income_progressbar_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:text="Income"
+                android:textStyle="bold"
+                android:textColor="@color/pureBlack"/>
 
+            <TextView
+                android:paddingTop="30dp"
+                android:id="@+id/income_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:text="80%"
+                android:textStyle="bold"
+                android:textColor="@color/pureBlack"/>
+
+            <ProgressBar
+                android:paddingTop="30dp"
                 android:id="@+id/incomeProgressbar"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
@@ -33,15 +72,37 @@
                 android:secondaryProgress="100"
                 />
 
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-            <ProgressBar
+            <TextView
+                android:layout_alignTop="@id/expenseProgressbar"
+                android:paddingTop="10dp"
+                android:id="@+id/expense_progressbar_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:text="Expense"
+                android:textStyle="bold"
+                android:textColor="@color/pureBlack"/>
 
+            <TextView
+                android:id="@+id/expense_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:text="70%"
+                android:paddingTop="30dp"
+                android:textStyle="bold"
+                android:textColor="@color/pureBlack"/>
+            <ProgressBar
                 android:id="@+id/expenseProgressbar"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
@@ -49,21 +110,45 @@
                 android:indeterminate="false"
                 android:max="100"
                 android:progress="70"
+                android:paddingTop="30dp"
                 android:layout_centerInParent="true"
                 android:progressDrawable="@drawable/circular_expense"
                 android:secondaryProgress="100"
                 />
 
 
-        </LinearLayout>
-        <LinearLayout
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ProgressBar
+            <TextView
+                android:paddingTop="10dp"
+                android:id="@+id/saving_progressbar_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:text="Saving"
+                android:textStyle="bold"
+                android:textColor="@color/pureBlack"/>
 
+            <TextView
+                android:paddingTop="30dp"
+                android:id="@+id/saving_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:text="50%"
+                android:textStyle="bold"
+                android:textColor="@color/pureBlack"/>
+
+            <ProgressBar
+                android:paddingTop="30dp"
                 android:id="@+id/savingProgressbar"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
@@ -76,7 +161,7 @@
                 android:secondaryProgress="100"
                 />
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
     </LinearLayout>
@@ -139,10 +224,7 @@
                         android:id="@+id/income_addNew"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:minWidth="20dp"
-                        android:maxWidth="30dp"
-                        android:maxHeight="35dp"
-                        android:minHeight="30dp"
+                        android:theme="@style/drop_add_image_button"
                         android:src="@drawable/ic_add_black_24dp"
                         android:background="@drawable/image_button_controller"
                         android:contentDescription="TODO" />
@@ -153,10 +235,7 @@
                         android:id="@+id/income_dropDown"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:minWidth="20dp"
-                        android:maxWidth="30dp"
-                        android:maxHeight="35dp"
-                        android:minHeight="30dp"
+                        android:theme="@style/drop_add_image_button"
                         android:background="@drawable/image_button_controller"
                         android:src="@drawable/ic_arrow_drop_down_black_24dp"/>
 
@@ -189,6 +268,7 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="15dp"
                     android:background="@color/expense_light"
                     android:weightSum="8"
                     android:gravity="center"
@@ -231,10 +311,7 @@
                         android:id="@+id/expense_addNew"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:minWidth="20dp"
-                        android:maxWidth="30dp"
-                        android:maxHeight="35dp"
-                        android:minHeight="30dp"
+                        android:theme="@style/drop_add_image_button"
                         android:src="@drawable/ic_add_black_24dp"
                         android:background="@drawable/image_button_controller"/>
 
@@ -244,10 +321,7 @@
                         android:id="@+id/expense_dropDown"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:minWidth="20dp"
-                        android:maxWidth="30dp"
-                        android:maxHeight="35dp"
-                        android:minHeight="30dp"
+                        android:theme="@style/drop_add_image_button"
                         android:src="@drawable/ic_arrow_drop_down_black_24dp"
                         android:background="@drawable/image_button_controller"/>
 
@@ -279,6 +353,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:layout_marginTop="15dp"
                     android:background="@color/saving_light"
                     android:weightSum="8"
                     android:gravity="center"
@@ -291,6 +366,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="viewStart"
+                        android:paddingLeft="5dp"
                         android:text="Current Saving"
                         android:textStyle="bold"
                         android:textColor="@color/pureBlack"/>
@@ -320,10 +396,7 @@
                         android:id="@+id/saving_addNew"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:minWidth="20dp"
-                        android:maxWidth="30dp"
-                        android:maxHeight="35dp"
-                        android:minHeight="30dp"
+                        android:theme="@style/drop_add_image_button"
                         android:src="@drawable/ic_add_black_24dp"
                         android:background="@drawable/image_button_controller"/>
 
@@ -333,10 +406,7 @@
                         android:id="@+id/saving_dropDown"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:minWidth="20dp"
-                        android:maxWidth="30dp"
-                        android:maxHeight="35dp"
-                        android:minHeight="30dp"
+                        android:theme="@style/drop_add_image_button"
                         android:src="@drawable/ic_arrow_drop_down_black_24dp"
                         android:background="@drawable/image_button_controller"/>
 

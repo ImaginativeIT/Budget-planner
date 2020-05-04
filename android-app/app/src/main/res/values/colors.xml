@@ -6,6 +6,7 @@
 
     <color name="pureBlack">#000000</color>
     <color name="gray">#bfbfbf</color>
+    <color name="dark_blue">#090056</color>
 
     <color name="saving">#ffb900</color>
     <color name="income">#219de7</color>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="7"
+    android:orientation="horizontal">
+
+    <EditText
+        android:layout_weight="2"
+        android:id="@+id/item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapSentences"
+        android:theme="@style/create_plan_edit_text"
+        android:hint="item name" />
+
+    <EditText
+        android:layout_weight="2"
+        android:id="@+id/item_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:theme="@style/create_plan_edit_text"
+        android:hint="expecting amount" />
+
+    <ImageButton
+        android:layout_margin="5dp"
+        android:layout_weight="3"
+        android:id="@+id/delete_item_btn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/image_button_controller"
+        android:src="@drawable/ic_delete_forever_blue_24dp" />
+
+</LinearLayout>

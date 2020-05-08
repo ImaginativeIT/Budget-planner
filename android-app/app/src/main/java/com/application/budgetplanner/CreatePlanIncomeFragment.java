@@ -13,12 +13,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.application.budgetplanner.R;
 
 public class CreatePlanIncomeFragment extends Fragment implements View.OnClickListener {
     LinearLayout incomeParentContainer;
     LayoutInflater inflater;
+    ScrollView scrollView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_create_plan_income, container, false);
@@ -36,6 +38,7 @@ public class CreatePlanIncomeFragment extends Fragment implements View.OnClickLi
 
         incomeParentContainer = getActivity().findViewById(R.id.income_parent_container);
         Button addItemBtn = getActivity().findViewById(R.id.add_item_btn);
+        scrollView = getActivity().findViewById(R.id.scroll_view);
 
         addItemBtn.setOnClickListener(this);
         inflater=(LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -66,6 +69,9 @@ public class CreatePlanIncomeFragment extends Fragment implements View.OnClickLi
             ImageButton btn = rowView.findViewById(R.id.delete_item_btn);
             btn.setOnClickListener(this);
             incomeParentContainer.addView(rowView, incomeParentContainer.getChildCount() - 1);
+
         }
+        scrollView.fullScroll(View.FOCUS_DOWN);
+        scrollView.scrollTo(0, 0);
     }
 }

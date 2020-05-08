@@ -19,4 +19,12 @@ public class PlanItem {
     public void setItemAmount(int itemAmount) {
         this.itemAmount = itemAmount;
     }
+
+    @Override
+    public String toString() {
+        return "PlanItem{" +
+                "itemName='" + itemName + '\'' +
+                ", itemAmount=" + itemAmount +
+                '}';
+    }
 }

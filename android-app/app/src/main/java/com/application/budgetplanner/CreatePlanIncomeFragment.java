@@ -6,21 +6,28 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import com.application.budgetplanner.R;
+import com.application.budgetplanner.dataModel.PlanItem;
+
+import java.util.ArrayList;
 
 public class CreatePlanIncomeFragment extends Fragment implements View.OnClickListener {
     LinearLayout incomeParentContainer;
     LayoutInflater inflater;
     ScrollView scrollView;
+    ArrayList<PlanItem> incomeItems;
+    PlanItem planItem;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_create_plan_income, container, false);
@@ -35,28 +42,40 @@ public class CreatePlanIncomeFragment extends Fragment implements View.OnClickLi
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        inflater=(LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         incomeParentContainer = getActivity().findViewById(R.id.income_parent_container);
+        if(CreatePlanActivity.incomeItems != null){
+            for(int i = 0; i< CreatePlanActivity.incomeItems.size(); i++){
+                PlanItem item = CreatePlanActivity.incomeItems.get(i);
+                String name = item.getItemName();
+                int amount = item.getItemAmount();
+
+                Log.e("Next after", " "+i+ " " + name + " " + amount + " " + item);
+
+                final View rowView=inflater.inflate(R.layout.single_item_create_plan, null);
+                ImageButton btn = rowView.findViewById(R.id.delete_item_btn);
+                btn.setOnClickListener(this);
+                EditText itemNameText = rowView.findViewById(R.id.item_name);
+                EditText itemAmountText = rowView.findViewById(R.id.item_amount);
+                itemNameText.setText(name);
+                itemAmountText.setText(String.valueOf(amount));
+                incomeParentContainer.addView(rowView, incomeParentContainer.getChildCount());
+            }
+        }
+
+
+
+
+
         Button addItemBtn = getActivity().findViewById(R.id.add_item_btn);
+        Button nextBtn = getActivity().findViewById(R.id.next_btn);
         scrollView = getActivity().findViewById(R.id.scroll_view);
 
         addItemBtn.setOnClickListener(this);
-        inflater=(LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        addItemBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                LayoutInflater inflater=(LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                final View rowView=inflater.inflate(R.layout.single_item_create_plan, null);
-//                ImageButton btn = rowView.findViewById(R.id.delete_item_btn);
-//                btn.setOnClickListener(this);
-//                // Add the new row before the add field button.
-//                incomeParentContainer.addView(rowView, incomeParentContainer.getChildCount() - 1);
-//            }
-//        });
+        nextBtn.setOnClickListener(this);
 
 
     }
-
 
     @Override
     public void onClick(View view) {
@@ -68,10 +87,45 @@ public class CreatePlanIncomeFragment extends Fragment implements View.OnClickLi
             final View rowView=inflater.inflate(R.layout.single_item_create_plan, null);
             ImageButton btn = rowView.findViewById(R.id.delete_item_btn);
             btn.setOnClickListener(this);
-            incomeParentContainer.addView(rowView, incomeParentContainer.getChildCount() - 1);
+            Log.e("Count child" , " " + incomeParentContainer.getChildCount());
+            incomeParentContainer.addView(rowView, incomeParentContainer.getChildCount());
+            scrollView.fullScroll(View.FOCUS_DOWN);
 
         }
-        scrollView.fullScroll(View.FOCUS_DOWN);
-        scrollView.scrollTo(0, 0);
+        else if(id == R.id.next_btn){
+            incomeItems = new ArrayList<>();
+            for(int i = 0; i<incomeParentContainer.getChildCount(); i++){
+                planItem = new PlanItem();
+                View childView = incomeParentContainer.getChildAt(i);
+                EditText itemNameText = childView.findViewById(R.id.item_name);
+                EditText itemAmountText = childView.findViewById(R.id.item_amount);
+                String name = itemNameText.getText().toString();
+                String amount = itemAmountText.getText().toString();
+
+                if(TextUtils.isEmpty(name)){
+                    itemNameText.setError("Required");
+                    return;
+                }
+                else if(TextUtils.isEmpty(amount)){
+                    itemAmountText.setError("Required");
+                    return;
+                }
+                else{
+                    planItem.setItemName(name);
+                    planItem.setItemAmount(Integer.parseInt(amount));
+                    incomeItems.add(planItem);
+                    Log.e("Next", " " + name + " " + amount + " " + planItem);
+                }
+
+
+            }
+
+            CreatePlanActivity.incomeItems = incomeItems;
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            CreatePlanExpenseFragment createPlanExpenseFragment = new CreatePlanExpenseFragment();
+            fragmentTransaction.replace(R.id.fragment_container, createPlanExpenseFragment).commit();
+
+        }
     }
 }

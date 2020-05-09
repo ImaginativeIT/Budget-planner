@@ -27,4 +27,18 @@
         <item name="android:textAlignment">center</item>
     </style>
 
+    <style name="stepper_text_view" parent="android:Widget.TextView">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/pure</item>
+        <item name="android:minHeight">35dp</item>
+        <item name="android:maxHeight">50dp</item>
+        <item name="android:minWidth">35dp</item>
+        <item name="android:maxWidth">50dp</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="normal_button" parent="android:Widget.Button">
+        <item name="android:textColor">@color/pure</item>
+    </style>
+
 </resources>

@@ -10,11 +10,11 @@
         <item
             android:id="@+id/create_p"
             android:icon="@drawable/drop_down"
-            android:title="Create new plan" />
+            android:title="Saved plan" />
         <item
-            android:id="@+id/create_pl"
-            android:icon="@drawable/drop_down"
-            android:title="Create new plan" />
+            android:id="@+id/analyse_plan"
+            android:icon="@drawable/ic_equalizer_blue_24dp"
+            android:title="Analyse plan" />
         <item
             android:id="@+id/create_pla"
             android:icon="@drawable/drop_down"

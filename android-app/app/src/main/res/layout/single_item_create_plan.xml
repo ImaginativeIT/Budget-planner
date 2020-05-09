@@ -6,6 +6,8 @@
     android:orientation="horizontal">
 
     <EditText
+        android:layout_margin="5dp"
+        android:background="@drawable/normal_edittext_background"
         android:layout_weight="2"
         android:id="@+id/item_name"
         android:layout_width="match_parent"
@@ -15,6 +17,8 @@
         android:hint="item name" />
 
     <EditText
+        android:layout_margin="5dp"
+        android:background="@drawable/normal_edittext_background"
         android:layout_weight="2"
         android:id="@+id/item_amount"
         android:layout_width="match_parent"

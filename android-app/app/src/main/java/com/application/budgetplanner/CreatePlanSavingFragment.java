@@ -21,11 +21,11 @@ import com.application.budgetplanner.dataModel.PlanItem;
 
 import java.util.ArrayList;
 
-public class CreatePlanExpenseFragment extends Fragment implements View.OnClickListener {
+public class CreatePlanSavingFragment extends Fragment implements View.OnClickListener {
     LinearLayout parentContainer;
     LayoutInflater inflater;
     ScrollView scrollView;
-    ArrayList<PlanItem> expenseItems;
+    ArrayList<PlanItem> savingItems;
     PlanItem planItem;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,14 +36,15 @@ public class CreatePlanExpenseFragment extends Fragment implements View.OnClickL
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         CreatePlanActivity.stepOne.setBackground(getActivity().getDrawable(R.drawable.stepper_background_gray));
-        CreatePlanActivity.stepTwo.setBackground(getActivity().getDrawable(R.drawable.stepper_background));
-        CreatePlanActivity.stepThree.setBackground(getActivity().getDrawable(R.drawable.stepper_background_gray));
+        CreatePlanActivity.stepTwo.setBackground(getActivity().getDrawable(R.drawable.stepper_background_gray));
+        CreatePlanActivity.stepThree.setBackground(getActivity().getDrawable(R.drawable.stepper_background));
+
 
         inflater=(LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         parentContainer = getActivity().findViewById(R.id.items_parent_container);
-        if(CreatePlanActivity.expenseItems != null){
-            for(int i = 0; i< CreatePlanActivity.expenseItems.size(); i++){
-                PlanItem item = CreatePlanActivity.expenseItems.get(i);
+        if(CreatePlanActivity.savingItems != null){
+            for(int i = 0; i< CreatePlanActivity.savingItems.size(); i++){
+                PlanItem item = CreatePlanActivity.savingItems.get(i);
                 String name = item.getItemName();
                 int amount = item.getItemAmount();
 
@@ -60,17 +61,14 @@ public class CreatePlanExpenseFragment extends Fragment implements View.OnClickL
             }
         }
 
-
-
-
-
         Button addItemBtn = getActivity().findViewById(R.id.add_item_btn);
-        Button nextBtn = getActivity().findViewById(R.id.next_btn);
+        Button saveBtn = getActivity().findViewById(R.id.next_btn);
+        saveBtn.setText("Save");
         Button backBtn = getActivity().findViewById(R.id.back_btn);
         scrollView = getActivity().findViewById(R.id.scroll_view);
 
         addItemBtn.setOnClickListener(this);
-        nextBtn.setOnClickListener(this);
+        saveBtn.setOnClickListener(this);
         backBtn.setOnClickListener(this);
     }
 
@@ -91,6 +89,7 @@ public class CreatePlanExpenseFragment extends Fragment implements View.OnClickL
         }
         else if(id == R.id.next_btn){
             if(saveCurrentData()) {
+
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 CreatePlanSavingFragment createPlanSavingFragment = new CreatePlanSavingFragment();
@@ -99,28 +98,23 @@ public class CreatePlanExpenseFragment extends Fragment implements View.OnClickL
             else{
                 Log.e("failed", "saving data");
             }
-
-
         }
         else if(id == R.id.back_btn){
-
             if(saveCurrentData()) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                CreatePlanIncomeFragment createPlanIncomeFragment = new CreatePlanIncomeFragment();
-                fragmentTransaction.replace(R.id.fragment_container, createPlanIncomeFragment).commit();
+                CreatePlanExpenseFragment createPlanExpenseFragment = new CreatePlanExpenseFragment();
+                fragmentTransaction.replace(R.id.fragment_container, createPlanExpenseFragment).commit();
             }
             else{
                 Log.e("failed", "saving data");
             }
-
-
         }
 
     }
 
     public boolean saveCurrentData(){
-        expenseItems = new ArrayList<>();
+        savingItems = new ArrayList<>();
         for(int i = 0; i<parentContainer.getChildCount(); i++) {
             planItem = new PlanItem();
             View childView = parentContainer.getChildAt(i);
@@ -138,11 +132,11 @@ public class CreatePlanExpenseFragment extends Fragment implements View.OnClickL
             } else {
                 planItem.setItemName(name);
                 planItem.setItemAmount(Integer.parseInt(amount));
-                expenseItems.add(planItem);
+                savingItems.add(planItem);
                 Log.e("Next", " " + name + " " + amount + " " + planItem);
             }
         }
-        CreatePlanActivity.expenseItems = expenseItems;
+        CreatePlanActivity.savingItems = savingItems;
         return true;
     }
 }
